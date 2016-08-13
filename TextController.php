@@ -26,7 +26,7 @@ class TextController extends Controller
     /**
      * Send a text message to a given number.
      * @param  text $msg Body for the text message
-     * @return bool      ture = text sent, false = error
+     * @return bool      true = text sent, false = error
      */
     public function sendText($msg){
 	    $AccountSid = env('TWILIO_SID');
