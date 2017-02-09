@@ -1,4 +1,5 @@
 # Twilio Controller for Laravel and Lumen
+## Featured on [Twilio's developer blog](https://www.twilio.com/blog/2016/08/shahzeb-khan-builds-frank-ocean-album-detection.html).
 
 ![screenshot.png](screenshot.png)
 
