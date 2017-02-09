@@ -29,23 +29,26 @@ class TextController extends Controller
      * @return bool      true = text sent, false = error
      */
     public function sendText($msg){
+	    // Prepare Twilio with our info in the .env file
 	    $AccountSid = env('TWILIO_SID');
 	    $AuthToken = env('TWILIO_AUTH_TOKEN');
 	    $client = new Services_Twilio($AccountSid, $AuthToken);
 	    $this->message = $msg;
 	    
 	    try {
+		// Attempt to send our text:
 	        $message = $client->account->messages->create(array(
 	            "From" => "+".env('TWILIO_NUMBER'),
 	            "To" => $this->number,
 	            "Body" => $this->message,
 	        ));
 	    } catch (\Services_Twilio_RestException $e) {
+		 // Something went wrong, so log the error:
 	         Log::error("Twilio error while texting ".$this->number.": ".$e->getMessage());
 	         return false;
 	    }
-	    
+	    // Everything was fine, and text was sent:
+	    Log::info("Sent text to ".$this->number);
 	    return true;
-	    Log::info("Sent text to ".$this->number); ;
 	 } 
 }
